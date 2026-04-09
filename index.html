@@ -1,824 +1,2434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nabuath Ulla Khan | Chief Digital &amp; Analytics Officer</title>
-  <meta name="description" content="Nabuath Ulla Khan — Chief Digital & Analytics Officer with 21 years of expertise in Digital Transformation, Supply Chain Analytics, AI/ML, GenAI, and Industry 4.0." />
-  <meta property="og:title" content="Nabuath Ulla Khan | Chief Digital & Analytics Officer" />
-  <meta property="og:description" content="Analytics & Digital Transformation leader with 21 years of expertise driving impactful business outcomes through AI, GenAI, IoT, and Supply Chain innovation." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nabuath.com" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nabuath Ulla Khan — Chief Digital & Analytics Officer</title>
+<!-- Georgia is a system font — no external font load required -->
+<style>
+/* ============================================================
+   CSS VARIABLES — MIDNIGHT GOLD THEME
+   ============================================================ */
+:root {
+  --bg-deep:   #141B26;
+  --bg-alt:    #1A2333;
+  --bg-card:   #1F2B3E;
+  --gold:      #C4965A;
+  --gold-soft: #B8895A;
+  --gold-dim:  rgba(196,150,90,0.12);
+  --gold-glow: rgba(196,150,90,0.07);
+  --white:     #E8ECF2;
+  --white-65:  rgba(210,218,230,0.72);
+  --white-30:  rgba(200,212,228,0.38);
+  --white-10:  rgba(200,212,228,0.09);
+  --navy:      #1B2A4A;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: Georgia, serif;
+  background: var(--bg-deep);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+.section-padded { padding: 100px 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), #D4AA70);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(20,27,38,0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+#nav.scrolled { border-bottom: 1px solid rgba(196,150,90,0.3); }
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.nav-logo {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white-65);
+  letter-spacing: 0.04em;
+  position: relative;
+  transition: color 0.2s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--white); }
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+
+.nav-cta {
+  background: var(--gold) !important;
+  color: #000 !important;
+  padding: 9px 22px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s, transform 0.2s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav overlay */
+#mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; right: -100%;
+  width: 280px; height: 100vh;
+  background: #0A0F1C;
+  border-left: 1px solid rgba(196,150,90,0.2);
+  z-index: 999;
+  transition: right 0.35s ease;
+  padding: 100px 40px 40px;
+  flex-direction: column;
+  gap: 28px;
+}
+#mobile-nav.open { right: 0; }
+#mobile-nav a {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--white-65);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+#mobile-nav a:hover { color: var(--gold); }
+#mobile-nav .nav-cta-mobile {
+  margin-top: 16px;
+  display: inline-block;
+  background: var(--gold);
+  color: #000;
+  padding: 12px 28px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.hero-photo {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(20,27,38,0.4) 60%, rgba(20,27,38,1) 100%);
+}
+
+.hero-text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 80px 80px 60px;
+  background: var(--bg-deep);
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--gold);
+}
+.hero-eyebrow span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-name {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(38px, 4.5vw, 68px);
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.hero-name .name-khan {
+  display: block;
+  background: linear-gradient(135deg, var(--gold) 0%, #D4AA70 50%, var(--gold-soft) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-title {
+  font-size: 13px;
+  color: var(--white-65);
+  line-height: 1.9;
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.hero-typewriter {
+  font-size: 15px;
+  color: var(--white);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 26px;
+}
+.hero-typewriter .tw-prefix { color: var(--white-65); }
+.hero-typewriter .tw-text { color: var(--white); }
+.tw-cursor {
+  display: inline-block;
+  width: 2px; height: 18px;
+  background: var(--gold);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-industries {
+  font-size: 12px;
+  color: var(--white-30);
+  letter-spacing: 0.04em;
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--gold), #B8895A);
+  color: #000;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196,150,90,0.18);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border-radius: 3px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-ghost:hover {
+  background: var(--gold-dim);
+  transform: translateY(-2px);
+}
+
+/* Scroll down indicator */
+.scroll-down {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+.scroll-down span {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-30);
+}
+.scroll-down-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+@keyframes scrollBounce {
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(6px)}
+}
+
+/* Stats row */
+#stats-row {
+  background: var(--bg-alt);
+  border-top: 1px solid rgba(196,150,90,0.1);
+  border-bottom: 1px solid rgba(196,150,90,0.1);
+}
+.stats-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 48px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+.stat-item {
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+}
+.stat-value {
+  font-family: Georgia, serif;
+  font-size: 40px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--gold) 0%, #D4AA70 50%, var(--gold-soft) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--white-30);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+/* ============================================================
+   SECTION HEADERS (reusable)
+   ============================================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: block;
+}
+.section-title {
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--white);
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-top: 10px;
+  transition: width 1s ease;
+}
+.section-title.animated::after { width: 100%; }
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+#about { background: var(--bg-deep); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 64px;
+  margin-bottom: 60px;
+}
+
+.about-pullquote {
+  border-left: 3px solid var(--gold);
+  padding-left: 28px;
+}
+.about-pullquote blockquote {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 26px);
+  color: var(--white);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+.about-attribution {
+  font-size: 10px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+
+.about-right p { margin-bottom: 20px; }
+.about-lead {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--white);
+  line-height: 1.75;
+  border-left: 3px solid var(--gold);
+  padding-left: 20px;
+}
+.about-body {
+  font-size: 14px;
+  color: var(--white-65);
+  line-height: 1.85;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--white-10);
+  border-top: 3px solid transparent;
+  padding: 28px;
+  border-radius: 4px;
+  transition: border-top-color 0.3s, transform 0.3s;
+}
+.about-card:hover {
+  border-top-color: var(--gold);
+  transform: translateY(-4px);
+}
+.about-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.about-card p {
+  font-size: 13px;
+  color: var(--white-65);
+  line-height: 1.7;
+}
+
+/* Industry strip */
+.industry-strip {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 28px 36px;
+}
+.industry-strip-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.industry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ind-tag {
+  font-size: 12px;
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-weight: 400;
+}
+
+/* ============================================================
+   EXPERIENCE SECTION
+   ============================================================ */
+#experience { background: var(--bg-alt); }
+
+.exp-tagline {
+  text-align: center;
+  font-style: italic;
+  color: var(--white-30);
+  font-size: 14px;
+  margin-top: -44px;
+  margin-bottom: 56px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), rgba(196,150,90,0.1));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 36px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -34px;
+  top: 20px;
+  width: 14px; height: 14px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 3px solid var(--bg-alt);
+  box-shadow: 0 0 8px rgba(196,150,90,0.25);
+}
+
+.timeline-header {
+  background: var(--bg-card);
+  border: 1px solid var(--white-10);
+  border-left: 3px solid var(--gold);
+  padding: 22px 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.timeline-header:hover { background: #161e2e; }
+
+.tl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.tl-role {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.tl-company {
+  font-size: 13px;
+  color: var(--gold-soft);
+  font-weight: 500;
+}
+.tl-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+.tl-date {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+.tl-location {
+  font-size: 11px;
+  color: var(--white-30);
+}
+.tl-subtitle {
+  font-style: italic;
+  font-size: 12px;
+  color: var(--gold-soft);
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.tl-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 5px 14px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.tl-toggle-btn:hover { background: var(--gold-dim); }
+
+.tl-details {
+  background: #0E1522;
+  border: 1px solid var(--white-10);
+  border-top: none;
+  border-left: 3px solid rgba(196,150,90,0.3);
+  padding: 0 28px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+  border-radius: 0 0 4px 4px;
+}
+.tl-details.open {
+  max-height: 800px;
+  padding: 20px 28px 24px;
+}
+
+.tl-details ul li {
+  font-size: 13.5px;
+  color: var(--white-65);
+  line-height: 1.75;
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.tl-details ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px;
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* ============================================================
+   SKILLS SECTION
+   ============================================================ */
+#skills { background: var(--bg-deep); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.skill-group {
+  background: var(--bg-card);
+  border-left: 3px solid var(--gold);
+  border: 1px solid var(--white-10);
+  border-left: 3px solid var(--gold);
+  padding: 28px;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+.skill-group:hover { transform: translateY(-3px); }
+.skill-group-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.skill-group-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.skill-tag {
+  font-size: 12px;
+  color: var(--gold-soft);
+  background: var(--gold-dim);
+  border: 1px solid rgba(196,150,90,0.25);
+  padding: 5px 14px;
+  border-radius: 2px;
+  transition: background 0.2s, border-color 0.2s;
+  cursor: default;
+}
+.skill-tag:hover {
+  background: rgba(196,150,90,0.2);
+  border-color: var(--gold);
+}
+
+/* ============================================================
+   PROJECTS SECTION
+   ============================================================ */
+#projects { background: var(--bg-alt); }
+
+.sub-section { margin-bottom: 72px; }
+
+.sub-heading {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--white);
+  border-left: 4px solid var(--gold);
+  padding-left: 16px;
+  margin-bottom: 36px;
+}
+
+/* Engagement tiles */
+.engage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.engage-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--white-10);
+  padding: 28px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.engage-tile::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), #D4AA70);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.engage-tile:hover::before { transform: scaleX(1); }
+.engage-tile:hover { transform: translateY(-5px); border-color: rgba(196,150,90,0.2); }
+
+.tile-industry {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--white-30);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.tile-badge {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--gold);
+  background: var(--gold-dim);
+  border: 1px solid rgba(196,150,90,0.3);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.tile-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+.tile-detail-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.tile-detail-row { margin-bottom: 12px; }
+.tile-detail-text {
+  font-size: 12.5px;
+  color: var(--white-65);
+  line-height: 1.65;
+}
+.tile-outcome { color: var(--gold-soft); }
+.tile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+.tile-tag {
+  font-size: 10px;
+  color: var(--white-30);
+  background: var(--white-10);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+/* Featured solution cards */
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.feat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--white-10);
+  padding: 28px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.feat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), #D4AA70);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.feat-card:hover::before { transform: scaleX(1); }
+.feat-card:hover { transform: translateY(-4px); border-color: rgba(196,150,90,0.2); }
+
+.feat-tcv {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+.feat-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.feat-desc {
+  font-size: 12.5px;
+  color: var(--white-65);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.feat-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.feat-tag {
+  font-size: 10px;
+  color: var(--white-30);
+  background: var(--white-10);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+/* Detailed project cards */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.proj-card {
+  background: var(--bg-card);
+  border: 1px solid var(--white-10);
+  border-top: 2px solid rgba(196,150,90,0.3);
+  padding: 22px;
+  border-radius: 4px;
+  transition: transform 0.3s, border-top-color 0.3s;
+}
+.proj-card:hover {
+  transform: translateY(-3px);
+  border-top-color: var(--gold);
+}
+.proj-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.proj-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.proj-bullets li {
+  font-size: 11.5px;
+  color: var(--white-65);
+  line-height: 1.65;
+  margin-bottom: 7px;
+  padding-left: 14px;
+  position: relative;
+}
+.proj-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px;
+  width: 4px; height: 4px;
+  background: var(--gold-soft);
+  border-radius: 50%;
+}
+
+/* Compact cards grid */
+.compact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.compact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--white-10);
+  padding: 20px;
+  border-radius: 4px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.compact-card:hover {
+  border-color: rgba(196,150,90,0.3);
+  transform: translateY(-2px);
+}
+.compact-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.compact-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.compact-desc {
+  font-size: 11.5px;
+  color: var(--white-30);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   EDUCATION SECTION
+   ============================================================ */
+#education { background: var(--bg-deep); }
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.edu-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(196,150,90,0.3);
+  margin-bottom: 32px;
+}
+.edu-items { display: flex; flex-direction: column; gap: 28px; }
+.edu-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.edu-icon {
+  width: 38px; height: 38px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(196,150,90,0.3);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.edu-text {}
+.edu-degree {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.edu-school {
+  font-size: 12px;
+  color: var(--white-65);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+#contact { background: var(--bg-alt); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.contact-intro {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--white-65);
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+.open-to-work {
+  background: var(--gold-dim);
+  border: 1px solid rgba(196,150,90,0.3);
+  border-radius: 8px;
+  padding: 22px 24px;
+}
+.otw-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)}
+  50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}
+}
+.otw-text {
+  font-size: 13px;
+  color: var(--white-65);
+  line-height: 1.7;
+}
+
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--white-10);
+  padding: 20px 22px;
+  border-radius: 6px;
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.contact-card:hover {
+  border-color: rgba(196,150,90,0.4);
+  transform: translateX(6px);
+}
+.contact-icon {
+  width: 44px; height: 44px;
+  background: var(--gold-dim);
+  border: 1.5px solid rgba(196,150,90,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.contact-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--white-30);
+  margin-bottom: 4px;
+}
+.contact-card-value {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--white);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer {
+  background: #0F1520;
+  border-top: 1px solid rgba(196,150,90,0.15);
+  padding: 32px 40px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-copy {
+  font-size: 12px;
+  color: var(--white-30);
+}
+.footer-logo {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--white);
+}
+.footer-logo span { color: var(--gold); }
+.footer-domain {
+  font-size: 12px;
+  color: var(--white-30);
+}
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+#back-to-top {
+  position: fixed;
+  bottom: 36px; right: 36px;
+  width: 44px; height: 44px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  background: rgba(20,27,38,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 998;
+}
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#back-to-top::before {
+  content: '';
+  border-left: 2px solid var(--gold);
+  border-top: 2px solid var(--gold);
+  width: 10px; height: 10px;
+  transform: rotate(45deg) translateY(3px);
+}
+
+/* ============================================================
+   FADE-IN ANIMATIONS
+   ============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up.delay-1 { transition-delay: 0.1s; }
+.fade-up.delay-2 { transition-delay: 0.2s; }
+.fade-up.delay-3 { transition-delay: 0.3s; }
+.fade-up.delay-4 { transition-delay: 0.4s; }
+.fade-up.delay-5 { transition-delay: 0.5s; }
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+@media (max-width: 1024px) {
+  .engage-grid { grid-template-columns: repeat(2, 1fr); }
+  .feat-grid { grid-template-columns: repeat(2, 1fr); }
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  .compact-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero-text { padding: 60px 40px; }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .section-padded { padding: 72px 0; }
+
+  /* Nav */
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  #mobile-nav { display: flex; }
+  .nav-inner { padding: 0 20px; }
+
+  /* Hero */
+  #hero { flex-direction: column; }
+  .hero-photo { width: 100%; height: 55vw; min-height: 260px; }
+  .hero-photo-overlay {
+    background: linear-gradient(180deg, transparent 40%, rgba(20,27,38,0.7) 80%, rgba(20,27,38,1) 100%);
+  }
+  .hero-text { width: 100%; padding: 40px 24px 60px; }
+  .hero-name { font-size: clamp(32px, 8vw, 52px); }
+
+  /* Stats */
+  .stats-inner { gap: 24px; padding: 36px 24px; }
+  .stat-value { font-size: 30px; }
+
+  /* About */
+  .about-cards { grid-template-columns: 1fr; }
+
+  /* Skills */
+  .skills-grid { grid-template-columns: 1fr; }
+
+  /* Projects */
+  .engage-grid { grid-template-columns: 1fr; }
+  .feat-grid { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .compact-grid { grid-template-columns: 1fr; }
+
+  /* Education */
+  .edu-grid { grid-template-columns: 1fr; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; text-align: center; gap: 12px; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Scroll Progress Bar -->
-  <div id="scroll-progress"></div>
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress"></div>
 
-  <!-- Back to Top -->
-  <button id="back-to-top" aria-label="Back to top">&#8593;</button>
 
-  <!-- ========== NAVIGATION ========== -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">N<span>K</span></a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
-      </ul>
+<!-- Back to Top -->
+<div id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"></div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Nabuath<span>.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact" class="nav-cta">Contact</a>
     </div>
-  </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- ========== HERO ========== -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-masthead">
-      <span class="masthead-rule"></span>
-      <span class="masthead-text">Executive Portfolio &nbsp;&mdash;&nbsp; Digital &amp; Analytics Leadership</span>
-      <span class="masthead-rule"></span>
-    </div>
-    <div class="container hero-layout">
-      <div class="hero-photo fade-in">
-        <div class="hero-photo-frame">
-          <img src="assets/images/profile2.jpg" alt="Nabuath Ulla Khan" />
-        </div>
-        <div class="hero-photo-badge">
-          <span class="badge-num">22+</span>
-          <span class="badge-text">Years of<br>Leadership</span>
-        </div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-tag fade-in">Analytics &amp; Digital Transformation</div>
-        <h1 class="hero-name fade-in">Nabuath Ulla Khan</h1>
-        <h2 class="hero-title fade-in">Chief Digital &amp; Analytics Officer &nbsp;|&nbsp; Analytics IT Strategy &amp; Transformation Head &nbsp;|&nbsp; Manufacturing &amp; Supply Chain Analytics Head</h2>
-        <div class="hero-typewriter fade-in">
-          I help organisations <span id="typewriter-text"></span><span class="typewriter-cursor">|</span>
-        </div>
-        <p class="hero-sub fade-in">Manufacturing &nbsp;·&nbsp; Automotive &nbsp;·&nbsp; Aerospace &amp; Defense &nbsp;·&nbsp; Heavy Equipment &nbsp;·&nbsp; Oil &amp; Gas &nbsp;·&nbsp; Consumer Electronics</p>
-        <div class="hero-stats fade-in">
-          <div class="stat">
-            <span class="stat-num" data-prefix="">22+</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-num" data-prefix="$">$70M+</span>
-            <span class="stat-label">Solutions Delivered (TCV)</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-num" data-prefix="$">$230M+</span>
-            <span class="stat-label">Client Savings &amp; Revenue Impact Delivered</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-num" data-prefix="">60+</span>
-            <span class="stat-label">Team Members Led</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-num" data-prefix="">6</span>
-            <span class="stat-label">Global Organisations</span>
-          </div>
-        </div>
-        <div class="hero-actions fade-in">
-          <a href="#contact" class="btn btn-primary">Get In Touch</a>
-          <a href="https://www.linkedin.com/in/nabuath" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn Profile</a>
-        </div>
-      </div>
-    </div>
-    <a href="#about" class="hero-scroll" aria-label="Scroll down">
-      <span class="scroll-line"></span>
-    </a>
-  </section>
+<!-- Mobile Nav -->
+<div id="mobile-nav">
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
+  <a href="#contact" class="nav-cta-mobile">Contact</a>
+</div>
 
-  <!-- ========== ABOUT ========== -->
-  <section id="about">
-    <div class="container">
-      <div class="section-header fade-in" data-chapter="01">
-        <span class="section-label">Profile</span>
-        <h2>About Me</h2>
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section id="hero" style="position:relative;">
+  <div class="hero-photo">
+    <img src="assets/images/profile2.jpg" alt="Nabuath Ulla Khan" loading="eager">
+    <div class="hero-photo-overlay"></div>
+  </div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <span>Analytics &amp; Digital Transformation</span>
+    </div>
+    <h1 class="hero-name">
+      Nabuath Ulla
+      <span class="name-khan">Khan</span>
+    </h1>
+    <p class="hero-title">
+      Chief Digital &amp; Analytics Officer | Analytics IT Strategy &amp; Transformation Head | Manufacturing &amp; Supply Chain Analytics Head
+    </p>
+    <div class="hero-typewriter">
+      <span class="tw-prefix">I help organisations&nbsp;</span>
+      <span class="tw-text" id="tw-text"></span>
+      <span class="tw-cursor"></span>
+    </div>
+    <p class="hero-industries">
+      Manufacturing &nbsp;·&nbsp; Automotive &nbsp;·&nbsp; Aerospace &amp; Defense &nbsp;·&nbsp; Heavy Equipment &nbsp;·&nbsp; Oil &amp; Gas &nbsp;·&nbsp; Consumer Electronics
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-gold">Get In Touch</a>
+      <a href="https://linkedin.com/in/nabuath" target="_blank" rel="noopener" class="btn-ghost">LinkedIn Profile</a>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <div class="scroll-down-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Stats Row -->
+<div id="stats-row">
+  <div class="stats-inner">
+    <div class="stat-item fade-up">
+      <div class="stat-value" data-target="22" data-suffix="+">0</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item fade-up delay-1">
+      <div class="stat-value" data-prefix="$" data-target="70" data-suffix="M+">0</div>
+      <div class="stat-label">Solutions Delivered (TCV)</div>
+    </div>
+    <div class="stat-item fade-up delay-2">
+      <div class="stat-value" data-prefix="$" data-target="230" data-suffix="M+">0</div>
+      <div class="stat-label">Client Savings &amp; Revenue Impact</div>
+    </div>
+    <div class="stat-item fade-up delay-3">
+      <div class="stat-value" data-target="60" data-suffix="+">0</div>
+      <div class="stat-label">Team Members Led</div>
+    </div>
+    <div class="stat-item fade-up delay-4">
+      <div class="stat-value" data-target="6">0</div>
+      <div class="stat-label">Global Organisations</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT SECTION
+     ============================================================ -->
+<section id="about" class="section-padded">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">01 — Profile</span>
+      <h2 class="section-title">About Me</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-pullquote fade-up">
+        <blockquote>"I am a seasoned Digital, Data &amp; Analytics Transformation leader with 22+ years of experience driving enterprise-scale impact."</blockquote>
+        <div class="about-attribution">22+ Years · 6 Organisations · $230M+ Impact</div>
       </div>
-      <div class="about-grid">
-        <div class="about-text fade-in">
-          <p class="lead drop-cap">I am a seasoned Digital, Data &amp; Analytics Transformation leader with 22+ years of experience driving enterprise-scale impact across manufacturing, supply chain, operations, and aftermarket ecosystems — leveraging AI/GenAI, IoT, and Industry 4.0 to deliver outcomes that matter.</p>
-          <p>My career has been defined by a relentless focus on <strong>aligning technology with business strategy</strong> to deliver measurable results — revenue growth, cost optimisation, supply chain resilience, and operational excellence. I bring deep expertise across Digital &amp; IT Strategy, Analytics &amp; AI, N-tier Supplier Visibility, Demand Management, Warranty &amp; Quality Analytics, Smart Manufacturing, and emerging technologies including GenAI and Agentic AI.</p>
-          <p>As a <strong>trusted advisor to CIOs, CTOs, and C-suite executives</strong> at Accenture, SAS, and Genpact, I have helped global organisations move from reactive decision-making to predictive and prescriptive intelligence — delivering AI-powered predictive maintenance, smart manufacturing frameworks, IoT-driven connected ecosystems, and N-tier supply chain risk solutions with clear P&amp;L impact.</p>
-          <p>A core strength I bring is the ability to <strong>build from scratch and scale</strong> — setting up analytics platforms, defining enterprise data &amp; AI roadmaps, shaping product narratives, and embedding digital capabilities into operating models. I combine strategic vision with execution discipline, ensuring innovation translates into sustained business value.</p>
-          <blockquote class="pull-quote">"The measure of digital transformation is not the technology deployed — it is the business value unlocked and the resilience built."</blockquote>
-        </div>
-        <div class="about-highlights fade-in">
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9670;</div>
+      <div class="about-right fade-up delay-1">
+        <p class="about-lead">
+          I am a seasoned Digital, Data &amp; Analytics Transformation leader with 22+ years of experience driving enterprise-scale impact across manufacturing, supply chain, operations, and aftermarket ecosystems — leveraging AI/GenAI, IoT, and Industry 4.0 to deliver outcomes that matter.
+        </p>
+        <p class="about-body">
+          My career has been defined by a relentless focus on aligning technology with business strategy to deliver measurable results — revenue growth, cost optimisation, supply chain resilience, and operational excellence. I bring deep expertise across Digital &amp; IT Strategy, Analytics &amp; AI, N-tier Supplier Visibility, Demand Management, Warranty &amp; Quality Analytics, Smart Manufacturing, and emerging technologies including GenAI and Agentic AI.
+        </p>
+        <p class="about-body">
+          As a trusted advisor to CIOs, CTOs, and C-suite executives at Accenture, SAS, and Genpact, I have helped global organisations move from reactive decision-making to predictive and prescriptive intelligence — delivering AI-powered predictive maintenance, smart manufacturing frameworks, IoT-driven connected ecosystems, and N-tier supply chain risk solutions with clear P&amp;L impact.
+        </p>
+        <p class="about-body">
+          A core strength I bring is the ability to build from scratch and scale — setting up analytics platforms, defining enterprise data &amp; AI roadmaps, shaping product narratives, and embedding digital capabilities into operating models. I combine strategic vision with execution discipline, ensuring innovation translates into sustained business value.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-cards">
+      <div class="about-card fade-up">
+        <h4>Enterprise AI &amp; Data Strategy</h4>
+        <p>Defined enterprise-wide Data, AI, and Digital roadmaps aligned with corporate transformation objectives — integrating ERP, PLM, MES, and IIoT into a unified, governed data fabric.</p>
+      </div>
+      <div class="about-card fade-up delay-1">
+        <h4>Smart Factory &amp; Industry 4.0</h4>
+        <p>Enabling predictive manufacturing, real-time process optimisation, and intelligent automation through IIoT, computer vision, and digital twin validation.</p>
+      </div>
+      <div class="about-card fade-up delay-2">
+        <h4>Supply Chain Resilience &amp; N-tier Visibility</h4>
+        <p>Designed data-driven frameworks using GenAI and 3rd-party data to map N-tier supplier networks, score risk across ESG, geopolitical, and cyber dimensions.</p>
+      </div>
+      <div class="about-card fade-up delay-3">
+        <h4>Centers of Excellence &amp; Team Leadership</h4>
+        <p>Built and scaled global Analytics CoEs, managing multi-million dollar portfolios and leading diverse teams of up to 60 professionals across geographies.</p>
+      </div>
+    </div>
+
+    <div class="industry-strip fade-up">
+      <div class="industry-strip-label">Industry Expertise</div>
+      <div class="industry-tags">
+        <span class="ind-tag">Manufacturing</span>
+        <span class="ind-tag">Automotive</span>
+        <span class="ind-tag">Aerospace &amp; Defense</span>
+        <span class="ind-tag">Heavy Equipment</span>
+        <span class="ind-tag">Oil &amp; Gas</span>
+        <span class="ind-tag">Consumer Electronics</span>
+        <span class="ind-tag">Consumer Durables</span>
+        <span class="ind-tag">Aviation</span>
+        <span class="ind-tag">Power Utilities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EXPERIENCE SECTION
+     ============================================================ -->
+<section id="experience" class="section-padded">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">02 — Career</span>
+      <h2 class="section-title">Work Experience</h2>
+    </div>
+    <p class="exp-tagline fade-up">Click any role to expand the full details.</p>
+
+    <div class="timeline">
+
+      <!-- Role 1 -->
+      <div class="timeline-item fade-up">
+        <div class="timeline-header" onclick="toggleExp(this)">
+          <div class="tl-top">
             <div>
-              <h4>Enterprise AI &amp; Data Strategy</h4>
-              <p>Defined enterprise-wide Data, AI, and Digital roadmaps aligned with corporate transformation objectives — integrating ERP, PLM, MES, and IIoT into a unified, governed data fabric.</p>
+              <div class="tl-role">Digital Strategy Senior Principal</div>
+              <div class="tl-company">Accenture Solutions (Strategy &amp; Consulting) Pvt. Ltd.</div>
+            </div>
+            <div class="tl-meta">
+              <div class="tl-date">Dec 2021 – Present</div>
+              <div class="tl-location">Mumbai</div>
             </div>
           </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9670;</div>
+          <div class="tl-subtitle">Product Owner — Global Supply Chain Resilience | Client Services Lead — Growth Market SC&amp;O | Centre for Data &amp; Insights, Accenture Applied Intelligence</div>
+          <button class="tl-toggle-btn">Hide Details ▲</button>
+        </div>
+        <div class="tl-details open">
+          <ul>
+            <li>Developing and executing comprehensive digital transformation strategies aligned with business goals, identifying emerging technologies resulting in streamlined operations and competitive advantage.</li>
+            <li>Leveraging data and insights to transform clients' core business functions globally, integrating human ingenuity with advanced technologies to address complex challenges.</li>
+            <li>Spearheading development of predictive analytic models and cognitive services, including RPA and content analytics, utilizing extensive third-party data to drive client growth.</li>
+            <li>Helping clients across industries map their N-tier Supply Chain Network using 3rd party data to drive supply chain resilience with proactive visibility.</li>
+            <li>Enabling field force and sales teams digitally using GenAI and Agentic AI, driving significant efficiency and productivity gains.</li>
+            <li>Leading multimillion-dollar investment projects with precision, managing risks, dependencies, timely delivery, and budget adherence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 2 -->
+      <div class="timeline-item fade-up delay-1">
+        <div class="timeline-header" onclick="toggleExp(this)">
+          <div class="tl-top">
             <div>
-              <h4>Smart Factory &amp; Industry 4.0</h4>
-              <p>Enabling predictive manufacturing, real-time process optimisation, and intelligent automation through IIoT, computer vision, and digital twin validation.</p>
+              <div class="tl-role">Practice Head — Supply Chain &amp; IOT Analytics</div>
+              <div class="tl-company">SAS India Pvt. Ltd.</div>
+            </div>
+            <div class="tl-meta">
+              <div class="tl-date">Jul 2018 – Dec 2021</div>
+              <div class="tl-location">Mumbai</div>
             </div>
           </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9670;</div>
+          <button class="tl-toggle-btn">View Details ▾</button>
+        </div>
+        <div class="tl-details">
+          <ul>
+            <li>Led IoT &amp; Manufacturing Supply Chain Pre-Sales team at SAS Institute, driving strategic planning, digitalization, and IoT analytics solutions for Manufacturing, Oil &amp; Gas, and Healthcare clients.</li>
+            <li>Owned India IoT Analytics and Supply Chain revenue targets, leveraging domain expertise and CXO-level engagement to maximize revenue opportunities.</li>
+            <li>Directed digital strategy and innovation initiatives, integrating business and technology to bridge performance gaps and foster digital transformation.</li>
+            <li>Engineered IoT analytics solutions utilizing live streaming data, creating connected ecosystems that improved operational transparency and client profitability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 3 -->
+      <div class="timeline-item fade-up delay-2">
+        <div class="timeline-header" onclick="toggleExp(this)">
+          <div class="tl-top">
             <div>
-              <h4>Supply Chain Resilience &amp; N-tier Visibility</h4>
-              <p>Designed data-driven frameworks using GenAI and 3rd-party data to map N-tier supplier networks, score risk across ESG, geopolitical, and cyber dimensions, and drive proactive mitigation.</p>
+              <div class="tl-role">Assistant Vice President — IOT Analytics &amp; Research</div>
+              <div class="tl-company">Genpact India Pvt. Ltd.</div>
+            </div>
+            <div class="tl-meta">
+              <div class="tl-date">Jun 2016 – Jul 2018</div>
+              <div class="tl-location">Bengaluru</div>
             </div>
           </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9670;</div>
+          <button class="tl-toggle-btn">View Details ▾</button>
+        </div>
+        <div class="tl-details">
+          <ul>
+            <li>Developed scalable IoT analytical solutions leveraging live streaming and historical failure data, driving innovation across Smart Manufacturing, Smart Supply Chain, and Smart Retail.</li>
+            <li>Led strategic initiatives by crafting compelling RFI/RFP responses and implementing process automation techniques to optimize efficiency and reduce cycle times.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 4 -->
+      <div class="timeline-item fade-up delay-3">
+        <div class="timeline-header" onclick="toggleExp(this)">
+          <div class="tl-top">
             <div>
-              <h4>Centers of Excellence &amp; Team Leadership</h4>
-              <p>Built and scaled global Analytics CoEs, managing multi-million dollar portfolios and leading diverse teams of up to 60 professionals across geographies.</p>
+              <div class="tl-role">General Manager (Career Level 7)</div>
+              <div class="tl-company">Accenture Services Pvt. Ltd.</div>
+            </div>
+            <div class="tl-meta">
+              <div class="tl-date">Nov 2011 – Jun 2016</div>
+              <div class="tl-location">Mumbai</div>
+            </div>
+          </div>
+          <button class="tl-toggle-btn">View Details ▾</button>
+        </div>
+        <div class="tl-details">
+          <ul>
+            <li>Managed P&amp;L and key financial metrics for a warranty management and analytics account, ensuring strategic and financial success.</li>
+            <li>Led a skilled team in supply chain operations and warranty analytics, driving 8D strategies and seamless offshore service delivery for major Automotive, Heavy Equipment, Consumer Electronics, and Consumer Durables manufacturers.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 5 -->
+      <div class="timeline-item fade-up">
+        <div class="timeline-header" onclick="toggleExp(this)">
+          <div class="tl-top">
+            <div>
+              <div class="tl-role">Deputy Manager — Asia Quality</div>
+              <div class="tl-company">Whirlpool of India Ltd.</div>
+            </div>
+            <div class="tl-meta">
+              <div class="tl-date">Mar 2008 – Nov 2011</div>
+              <div class="tl-location">Gurugram</div>
+            </div>
+          </div>
+          <button class="tl-toggle-btn">View Details ▾</button>
+        </div>
+        <div class="tl-details">
+          <ul>
+            <li>Oversaw review of quality &amp; cost metrics (product &amp; services) for Asia across cross-functional groups, providing insights on failures and cost trends.</li>
+            <li>Drove consistent improvement culture through Six Sigma and process excellence initiatives across China, India, HK/TW, and Oceania.</li>
+            <li>Responsible for metrics alignment, standardisation, and deployment across regions — reducing Total Cost of Quality (TCQ) and Market Call Rate by 10% YOY.</li>
+            <li>Identified cost and quality improvement projects in each country through product quality analysis and financial reports; tracked progress via con-calls and country visits.</li>
+            <li>Led process improvement and transformation projects; implemented Six Sigma and Process Re-Engineering frameworks for the business vertical.</li>
+            <li>Supported formulation of business strategy on quality improvement and new product launches across the Asia region.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 6 -->
+      <div class="timeline-item fade-up delay-1">
+        <div class="timeline-header" onclick="toggleExp(this)">
+          <div class="tl-top">
+            <div>
+              <div class="tl-role">Senior Dispatcher / Warranty Cost Analyst</div>
+              <div class="tl-company">Dell International Services</div>
+            </div>
+            <div class="tl-meta">
+              <div class="tl-date">Aug 2004 – Mar 2008</div>
+              <div class="tl-location">Bengaluru</div>
+            </div>
+          </div>
+          <button class="tl-toggle-btn">View Details ▾</button>
+        </div>
+        <div class="tl-details">
+          <ul>
+            <li>Delivered $2.5M in warranty cost savings through Six Sigma methodologies and closed-loop action plans.</li>
+            <li>Led EBT to Dell Gurgaon transition to set up warranty cost operations.</li>
+            <li>Achieved service level of 98%+ for 3 consecutive quarters through disciplined warranty cost metric management.</li>
+            <li>Analysed and actioned warranty cost metrics (team-wise &amp; agent-wise), providing weekly performance snapshots to drive improvement.</li>
+            <li>Identified training needs among dispatchers; handled new hire training on dispatch operations and mentored new joiners.</li>
+            <li>Drove Repeat Dispatch Rate (RDR) reduction and cost control; audited dispatch calls using NICE software with structured feedback.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 7 -->
+      <div class="timeline-item fade-up delay-2">
+        <div class="timeline-header" style="cursor:default;">
+          <div class="tl-top">
+            <div>
+              <div class="tl-role">Technical Support Associate</div>
+              <div class="tl-company">CLI3L E-Services</div>
+            </div>
+            <div class="tl-meta">
+              <div class="tl-date">Apr 2004 – Aug 2004</div>
+              <div class="tl-location">Bengaluru</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Industry Knowledge Strip -->
-      <div class="industry-strip fade-in">
-        <span class="industry-strip-label">Industry Expertise</span>
-        <div class="industry-tags">
-          <span>Manufacturing</span>
-          <span>Automotive</span>
-          <span>Aerospace &amp; Defense</span>
-          <span>Heavy Equipment</span>
-          <span>Oil &amp; Gas</span>
-          <span>Consumer Electronics</span>
-          <span>Consumer Durables</span>
-          <span>Aviation</span>
-          <span>Power Utilities</span>
+    </div><!-- end timeline -->
+  </div>
+</section>
+
+<!-- ============================================================
+     SKILLS SECTION
+     ============================================================ -->
+<section id="skills" class="section-padded">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">03 — Expertise</span>
+      <h2 class="section-title">Core Competencies</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">Leadership &amp; Strategy</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Strategic Planning &amp; Leadership</span>
+          <span class="skill-tag">Digital Transformation &amp; IT Strategy</span>
+          <span class="skill-tag">P&amp;L Management</span>
+          <span class="skill-tag">Change Management</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">Team Building &amp; Leadership</span>
+          <span class="skill-tag">Program Management</span>
+          <span class="skill-tag">Consulting &amp; Solution Architecture</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up delay-1">
+        <div class="skill-group-title">AI, Analytics &amp; Data</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Analytics AI/ML</span>
+          <span class="skill-tag">GenAI &amp; Agentic AI</span>
+          <span class="skill-tag">Predictive Maintenance</span>
+          <span class="skill-tag">Demand Forecasting</span>
+          <span class="skill-tag">Edge Analytics</span>
+          <span class="skill-tag">Data Architecture &amp; Integration</span>
+          <span class="skill-tag">SAS / Power BI / Tableau</span>
+          <span class="skill-tag">AWS / Azure / GCP</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up delay-2">
+        <div class="skill-group-title">Supply Chain &amp; Operations</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Supply Chain Analytics</span>
+          <span class="skill-tag">N-tier Supply Chain Mapping</span>
+          <span class="skill-tag">Supply Chain Resilience</span>
+          <span class="skill-tag">Supply Chain Sustainability</span>
+          <span class="skill-tag">Inventory Management</span>
+          <span class="skill-tag">Demand Planning</span>
+          <span class="skill-tag">Supplier Risk Management</span>
+          <span class="skill-tag">After Market Services</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up delay-3">
+        <div class="skill-group-title">Manufacturing &amp; IoT</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Internet of Things (IoT)</span>
+          <span class="skill-tag">Industry 4.0</span>
+          <span class="skill-tag">Manufacturing Intelligence</span>
+          <span class="skill-tag">Warranty Mgmt. &amp; Analytics</span>
+          <span class="skill-tag">Cost &amp; Quality Improvement</span>
+          <span class="skill-tag">Supplier Quality Management</span>
+          <span class="skill-tag">Process Excellence</span>
+          <span class="skill-tag">Product Management</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== EXPERIENCE ========== -->
-  <section id="experience" class="section-alt">
-    <div class="container">
-      <div class="section-header fade-in" data-chapter="02">
-        <span class="section-label">Career</span>
-        <h2>Work Experience</h2>
-      </div>
-      <p class="section-invite fade-in">Click any role to explore the full details of what was delivered.</p>
-      <div class="timeline">
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3>Digital Strategy Inn Senior Principal</h3>
-                <span class="company">Accenture Solutions (Strategy &amp; Consulting) Pvt. Ltd.</span>
-              </div>
-              <div class="timeline-meta">
-                <span class="period">Dec 2021 — Present</span>
-                <span class="location">Mumbai</span>
-              </div>
-            </div>
-            <p class="role-subtitle">Product Owner — Global Supply Chain Resilience &nbsp;|&nbsp; Client Services Lead — Growth Market SC&amp;O &nbsp;|&nbsp; Centre for Data &amp; Insights, Accenture Applied Intelligence</p>
-            <ul class="timeline-points">
-              <li>Developing and executing comprehensive digital transformation strategies aligned with business goals, identifying emerging technologies resulting in streamlined operations and competitive advantage.</li>
-              <li>Leveraging data and insights to transform clients' core business functions globally, integrating human ingenuity with advanced technologies to address complex challenges.</li>
-              <li>Spearheading development of predictive analytic models and cognitive services, including RPA and content analytics, utilizing extensive third-party data to drive client growth.</li>
-              <li>Helping clients across industries map their N-tier Supply Chain Network using 3rd party data to drive supply chain resilience with proactive visibility.</li>
-              <li>Enabling field force and sales teams digitally using GenAI and Agentic AI, driving significant efficiency and productivity gains.</li>
-              <li>Leading multimillion-dollar investment projects with precision, managing risks, dependencies, timely delivery, and budget adherence.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3>Practice Head — Supply Chain &amp; IOT Analytics</h3>
-                <span class="company">SAS India Pvt. Ltd.</span>
-              </div>
-              <div class="timeline-meta">
-                <span class="period">Jul 2018 — Dec 2021</span>
-                <span class="location">Mumbai</span>
-              </div>
-            </div>
-            <ul class="timeline-points">
-              <li>Led IoT &amp; Manufacturing Supply Chain Pre-Sales team at SAS Institute, driving strategic planning, digitalization, and IoT analytics solutions for Manufacturing, Oil &amp; Gas, and Healthcare clients.</li>
-              <li>Owned India IoT Analytics and Supply Chain revenue targets, leveraging domain expertise and CXO-level engagement to maximize revenue opportunities.</li>
-              <li>Directed digital strategy and innovation initiatives, integrating business and technology to bridge performance gaps and foster digital transformation.</li>
-              <li>Engineered IoT analytics solutions utilizing live streaming data, creating connected ecosystems that improved operational transparency and client profitability.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3>Assistant Vice President — IOT Analytics &amp; Research</h3>
-                <span class="company">Genpact India Pvt. Ltd.</span>
-              </div>
-              <div class="timeline-meta">
-                <span class="period">Jun 2016 — Jul 2018</span>
-                <span class="location">Bengaluru</span>
-              </div>
-            </div>
-            <ul class="timeline-points">
-              <li>Developed scalable IoT analytical solutions leveraging live streaming and historical failure data, driving innovation across Smart Manufacturing, Smart Supply Chain, and Smart Retail.</li>
-              <li>Led strategic initiatives by crafting compelling RFI/RFP responses and implementing process automation techniques to optimize efficiency and reduce cycle times.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3>General Manager (Career Level 7)</h3>
-                <span class="company">Accenture Services Pvt. Ltd.</span>
-              </div>
-              <div class="timeline-meta">
-                <span class="period">Nov 2011 — Jun 2016</span>
-                <span class="location">Mumbai</span>
-              </div>
-            </div>
-            <ul class="timeline-points">
-              <li>Managed P&amp;L and key financial metrics for a warranty management and analytics account, ensuring strategic and financial success.</li>
-              <li>Led a skilled team in supply chain operations and warranty analytics, driving 8D strategies and seamless offshore service delivery for major Automotive, Heavy Equipment, Consumer Electronics, and Consumer Durables manufacturers.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3>Deputy Manager — Asia Quality</h3>
-                <span class="company">Whirlpool of India Ltd.</span>
-              </div>
-              <div class="timeline-meta">
-                <span class="period">Mar 2008 — Nov 2011</span>
-                <span class="location">Gurugram</span>
-              </div>
-            </div>
-            <ul class="timeline-points">
-              <li>Oversaw review of quality &amp; cost metrics (product &amp; services) for Asia across cross-functional groups, providing insights on failures and cost trends.</li>
-              <li>Drove consistent improvement culture through Six Sigma and process excellence initiatives across China, India, HK/TW, and Oceania.</li>
-              <li>Responsible for metrics alignment, standardisation, and deployment across regions — reducing Total Cost of Quality (TCQ) and Market Call Rate by 10% YOY.</li>
-              <li>Identified cost and quality improvement projects in each country through product quality analysis and financial reports; tracked progress via con-calls and country visits.</li>
-              <li>Led process improvement and transformation projects; implemented Six Sigma and Process Re-Engineering frameworks for the business vertical.</li>
-              <li>Supported formulation of business strategy on quality improvement and new product launches across the Asia region.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3>Senior Dispatcher / Warranty Cost Analyst</h3>
-                <span class="company">Dell International Services</span>
-              </div>
-              <div class="timeline-meta">
-                <span class="period">Aug 2004 — Mar 2008</span>
-                <span class="location">Bengaluru</span>
-              </div>
-            </div>
-            <ul class="timeline-points">
-              <li>Delivered $2.5M in warranty cost savings through Six Sigma methodologies and closed-loop action plans.</li>
-              <li>Led EBT to Dell Gurgaon transition to set up warranty cost operations.</li>
-              <li>Achieved service level of 98%+ for 3 consecutive quarters through disciplined warranty cost metric management.</li>
-              <li>Analysed and actioned warranty cost metrics (team-wise &amp; agent-wise), providing weekly performance snapshots to drive improvement.</li>
-              <li>Identified training needs among dispatchers; handled new hire training on dispatch operations and mentored new joiners.</li>
-              <li>Drove Repeat Dispatch Rate (RDR) reduction and cost control; audited dispatch calls using NICE software with structured feedback.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <div>
-                <h3>Technical Support Associate</h3>
-                <span class="company">CLI3L E-Services</span>
-              </div>
-              <div class="timeline-meta">
-                <span class="period">Apr 2004 — Aug 2004</span>
-                <span class="location">Bengaluru</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+<!-- ============================================================
+     PROJECTS SECTION
+     ============================================================ -->
+<section id="projects" class="section-padded">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">04 — Impact</span>
+      <h2 class="section-title">Solutions &amp; Projects</h2>
     </div>
-  </section>
 
-  <!-- ========== SKILLS ========== -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header fade-in" data-chapter="03">
-        <span class="section-label">Expertise</span>
-        <h2>Core Competencies</h2>
-      </div>
-      <div class="skills-grid">
+    <!-- Sub-section 1 -->
+    <div class="sub-section">
+      <h3 class="sub-heading fade-up">Featured Solutions &amp; Recent Client Engagements</h3>
+      <div class="engage-grid">
 
-        <div class="skill-group fade-in">
-          <h4><span class="skill-dot"></span>Leadership &amp; Strategy</h4>
-          <div class="skill-tags">
-            <span class="tag">Strategic Planning &amp; Leadership</span>
-            <span class="tag">Digital Transformation &amp; IT Strategy</span>
-            <span class="tag">P&amp;L Management</span>
-            <span class="tag">Change Management</span>
-            <span class="tag">Stakeholder Management</span>
-            <span class="tag">Team Building &amp; Leadership</span>
-            <span class="tag">Program Management</span>
-            <span class="tag">Consulting &amp; Solution Architecture</span>
-          </div>
-        </div>
-
-        <div class="skill-group fade-in">
-          <h4><span class="skill-dot"></span>AI, Analytics &amp; Data</h4>
-          <div class="skill-tags">
-            <span class="tag">Analytics AI/ML</span>
-            <span class="tag">GenAI &amp; Agentic AI</span>
-            <span class="tag">Predictive Maintenance</span>
-            <span class="tag">Demand Forecasting</span>
-            <span class="tag">Edge Analytics</span>
-            <span class="tag">Data Architecture &amp; Integration</span>
-            <span class="tag">SAS / Power BI / Tableau</span>
-            <span class="tag">AWS / Azure / GCP</span>
-          </div>
-        </div>
-
-        <div class="skill-group fade-in">
-          <h4><span class="skill-dot"></span>Supply Chain &amp; Operations</h4>
-          <div class="skill-tags">
-            <span class="tag">Supply Chain Analytics</span>
-            <span class="tag">N-tier Supply Chain Mapping</span>
-            <span class="tag">Supply Chain Resilience</span>
-            <span class="tag">Supply Chain Sustainability</span>
-            <span class="tag">Inventory Management</span>
-            <span class="tag">Demand Planning</span>
-            <span class="tag">Supplier Risk Management</span>
-            <span class="tag">After Market Services</span>
-          </div>
-        </div>
-
-        <div class="skill-group fade-in">
-          <h4><span class="skill-dot"></span>Manufacturing &amp; IoT</h4>
-          <div class="skill-tags">
-            <span class="tag">Internet of Things (IoT)</span>
-            <span class="tag">Industry 4.0</span>
-            <span class="tag">Manufacturing Intelligence</span>
-            <span class="tag">Warranty Mgmt. &amp; Analytics</span>
-            <span class="tag">Cost &amp; Quality Improvement</span>
-            <span class="tag">Supplier Quality Management</span>
-            <span class="tag">Process Excellence</span>
-            <span class="tag">Product Management</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROJECTS ========== -->
-  <section id="projects" class="section-alt">
-    <div class="container">
-      <div class="section-header fade-in" data-chapter="04">
-        <span class="section-label">Impact</span>
-        <h2>Solutions &amp; Projects</h2>
-      </div>
-
-      <!-- Featured Solutions & Recent Engagements -->
-      <div class="featured-solutions-heading fade-in">
-        <h3 class="past-projects-heading">Featured Solutions &amp; Recent Client Engagements</h3>
-      </div>
-      <div class="projects-grid">
-
-        <!-- 6 Recent Engagement Tiles -->
-        <div class="project-card engagement-tile fade-in">
+        <div class="engage-tile fade-up">
           <div class="tile-industry">Large Industrial &amp; Robotics Manufacturing</div>
-          <div class="project-value">$51M Margin Erosion Forecast</div>
-          <h3>Tariff Impact &amp; Supply Chain Risk Analysis</h3>
-          <div class="tile-details">
-            <div class="tile-detail"><span>Challenge</span><p>Rapidly shifting US tariff landscape creating cost volatility for raw materials and finished goods, impacting margins.</p></div>
-            <div class="tile-detail"><span>Approach</span><p>Advised CXO &amp; Board on tariff impact at BOM level; mapped 17 high-risk materials using N-tier mapping; built COGS impact tracking model.</p></div>
-            <div class="tile-detail tile-detail-outcome"><span>Outcome</span><p>17 high-risk materials identified; $51M margin erosion forecast; mitigation playbook delivered across short-, mid- &amp; long-term.</p></div>
+          <span class="tile-badge">$51M Margin Erosion Forecast</span>
+          <div class="tile-title">Tariff Impact &amp; Supply Chain Risk Analysis</div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Challenge</div>
+            <div class="tile-detail-text">Rapidly shifting US tariff landscape creating cost volatility for raw materials and finished goods, impacting margins.</div>
           </div>
-          <div class="project-tags"><span>N-tier Mapping</span><span>Tariff Analytics</span><span>Supply Chain</span></div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Approach</div>
+            <div class="tile-detail-text">Advised CXO &amp; Board on tariff impact at BOM level; mapped 17 high-risk materials using N-tier mapping; built COGS impact tracking model.</div>
+          </div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Outcome</div>
+            <div class="tile-detail-text tile-outcome">17 high-risk materials identified; $51M margin erosion forecast; mitigation playbook delivered across short-, mid- &amp; long-term.</div>
+          </div>
+          <div class="tile-tags">
+            <span class="tile-tag">N-tier Mapping</span>
+            <span class="tile-tag">Tariff Analytics</span>
+            <span class="tile-tag">Supply Chain</span>
+          </div>
         </div>
 
-        <div class="project-card engagement-tile fade-in">
+        <div class="engage-tile fade-up delay-1">
           <div class="tile-industry">Hi-Tech — Large Electronics Manufacturer</div>
-          <div class="project-value">$160–260M Revenue Loss Reduced</div>
-          <h3>Semiconductor Shortage &amp; Supply Chain Digital Twin</h3>
-          <div class="tile-details">
-            <div class="tile-detail"><span>Challenge</span><p>Semiconductor shortage causing major disruptions; need for proactive risk management to prevent production halts.</p></div>
-            <div class="tile-detail"><span>Approach</span><p>Developed Risk-Value Heat Map; created Supply Chain Digital Twin for 3,500 components and 700+ suppliers; ran resilience stress tests.</p></div>
-            <div class="tile-detail tile-detail-outcome"><span>Outcome</span><p>$160–260M reduced revenue loss every 3–4 years; 1,300+ parts assessed; event-based risk simulation capability established.</p></div>
+          <span class="tile-badge">$160–260M Revenue Loss Reduced</span>
+          <div class="tile-title">Semiconductor Shortage &amp; Supply Chain Digital Twin</div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Challenge</div>
+            <div class="tile-detail-text">Semiconductor shortage causing major disruptions; need for proactive risk management to prevent production halts.</div>
           </div>
-          <div class="project-tags"><span>Digital Twin</span><span>Risk Management</span><span>Hi-Tech</span></div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Approach</div>
+            <div class="tile-detail-text">Developed Risk-Value Heat Map; created Supply Chain Digital Twin for 3,500 components and 700+ suppliers; ran resilience stress tests.</div>
+          </div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Outcome</div>
+            <div class="tile-detail-text tile-outcome">$160–260M reduced revenue loss every 3–4 years; 1,300+ parts assessed; event-based risk simulation capability established.</div>
+          </div>
+          <div class="tile-tags">
+            <span class="tile-tag">Digital Twin</span>
+            <span class="tile-tag">Risk Management</span>
+            <span class="tile-tag">Hi-Tech</span>
+          </div>
         </div>
 
-        <div class="project-card engagement-tile fade-in">
+        <div class="engage-tile fade-up delay-2">
           <div class="tile-industry">Heavy Equipment Manufacturer — Multinational</div>
-          <div class="project-value">Productivity ↑15% | Working Capital ↓10%</div>
-          <h3>N-Tier Supply Chain Visibility with GenAI</h3>
-          <div class="tile-details">
-            <div class="tile-detail"><span>Challenge</span><p>Lack of visibility beyond Tier 1 and inability to assess supply chain risk exposure across the full supplier network.</p></div>
-            <div class="tile-detail"><span>Approach</span><p>AI/ML + Azure OpenAI (GenAI) for automated data cleansing, NAICS mapping, BOM creation, risk scoring, and N-tier visualization.</p></div>
-            <div class="tile-detail tile-detail-outcome"><span>Outcome</span><p>Productivity ↑15%, working capital ↓10%, supplier management ↑3%; high-risk suppliers identified beyond Tier 1.</p></div>
+          <span class="tile-badge">Productivity ↑15% | Working Capital ↓10%</span>
+          <div class="tile-title">N-Tier Supply Chain Visibility with GenAI</div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Challenge</div>
+            <div class="tile-detail-text">Lack of visibility beyond Tier 1 and inability to assess supply chain risk exposure across the full supplier network.</div>
           </div>
-          <div class="project-tags"><span>GenAI</span><span>N-tier</span><span>Heavy Equipment</span></div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Approach</div>
+            <div class="tile-detail-text">AI/ML + Azure OpenAI (GenAI) for automated data cleansing, NAICS mapping, BOM creation, risk scoring, and N-tier visualization.</div>
+          </div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Outcome</div>
+            <div class="tile-detail-text tile-outcome">Productivity ↑15%, working capital ↓10%, supplier management ↑3%; high-risk suppliers identified beyond Tier 1.</div>
+          </div>
+          <div class="tile-tags">
+            <span class="tile-tag">GenAI</span>
+            <span class="tile-tag">N-tier</span>
+            <span class="tile-tag">Heavy Equipment</span>
+          </div>
         </div>
 
-        <div class="project-card engagement-tile fade-in">
+        <div class="engage-tile fade-up delay-3">
           <div class="tile-industry">Automotive — Multinational Car Manufacturer</div>
-          <div class="project-value">71–86% Accuracy | 22 Risk Alerts</div>
-          <h3>AI-Driven N-Tier Digital Twin for Supply Resilience</h3>
-          <div class="tile-details">
-            <div class="tile-detail"><span>Challenge</span><p>Severe supply chain disruptions and low N-tier supplier visibility hindering production planning and vehicle output.</p></div>
-            <div class="tile-detail"><span>Approach</span><p>Partnered with 3rd party data providers; mapped 50k business relationships, 5k physical nodes; built AI-driven digital twin for risk alerts.</p></div>
-            <div class="tile-detail tile-detail-outcome"><span>Outcome</span><p>71–86% accuracy for complex components; 22 risk alerts raised; sustainable risk management capability established.</p></div>
+          <span class="tile-badge">71–86% Accuracy | 22 Risk Alerts</span>
+          <div class="tile-title">AI-Driven N-Tier Digital Twin for Supply Resilience</div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Challenge</div>
+            <div class="tile-detail-text">Severe supply chain disruptions and low N-tier supplier visibility hindering production planning and vehicle output.</div>
           </div>
-          <div class="project-tags"><span>Digital Twin</span><span>AI/ML</span><span>Automotive</span></div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Approach</div>
+            <div class="tile-detail-text">Partnered with 3rd party data providers; mapped 50k business relationships, 5k physical nodes; built AI-driven digital twin for risk alerts.</div>
+          </div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Outcome</div>
+            <div class="tile-detail-text tile-outcome">71–86% accuracy for complex components; 22 risk alerts raised; sustainable risk management capability established.</div>
+          </div>
+          <div class="tile-tags">
+            <span class="tile-tag">Digital Twin</span>
+            <span class="tile-tag">AI/ML</span>
+            <span class="tile-tag">Automotive</span>
+          </div>
         </div>
 
-        <div class="project-card engagement-tile fade-in">
+        <div class="engage-tile fade-up delay-4">
           <div class="tile-industry">Defense — Australian Organization</div>
-          <div class="project-value">24+ Countries Risk Mapped</div>
-          <h3>Multi-Tier Supplier Network Risk Analysis</h3>
-          <div class="tile-details">
-            <div class="tile-detail"><span>Challenge</span><p>Complex, high-risk multi-tier supplier networks with geopolitical and cyber risk exposure in sensitive defense industries.</p></div>
-            <div class="tile-detail"><span>Approach</span><p>Conducted 4-phase N-Tier Network Analysis: network mapping, multi-tier risk assessment, visualization, and action planning.</p></div>
-            <div class="tile-detail tile-detail-outcome"><span>Outcome</span><p>Vulnerabilities identified across 24+ countries; proactive mitigation enabled; compliance and predictive risk management improved.</p></div>
+          <span class="tile-badge">24+ Countries Risk Mapped</span>
+          <div class="tile-title">Multi-Tier Supplier Network Risk Analysis</div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Challenge</div>
+            <div class="tile-detail-text">Complex, high-risk multi-tier supplier networks with geopolitical and cyber risk exposure in sensitive defense industries.</div>
           </div>
-          <div class="project-tags"><span>Defense</span><span>Geopolitical Risk</span><span>N-tier</span></div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Approach</div>
+            <div class="tile-detail-text">Conducted 4-phase N-Tier Network Analysis: network mapping, multi-tier risk assessment, visualization, and action planning.</div>
+          </div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Outcome</div>
+            <div class="tile-detail-text tile-outcome">Vulnerabilities identified across 24+ countries; proactive mitigation enabled; compliance and predictive risk management improved.</div>
+          </div>
+          <div class="tile-tags">
+            <span class="tile-tag">Defense</span>
+            <span class="tile-tag">Geopolitical Risk</span>
+            <span class="tile-tag">N-tier</span>
+          </div>
         </div>
 
-        <div class="project-card engagement-tile fade-in">
+        <div class="engage-tile fade-up delay-5">
           <div class="tile-industry">Energy &amp; Utilities</div>
-          <div class="project-value">Biodiversity Risk Transparency</div>
-          <h3>Upstream Mining &amp; Biodiversity Impact Mapping</h3>
-          <div class="tile-details">
-            <div class="tile-detail"><span>Challenge</span><p>Limited visibility into upstream mining operations and biodiversity impact of suppliers across the value chain.</p></div>
-            <div class="tile-detail"><span>Approach</span><p>Enhanced N-tier mapping (T1–T3) to trace suppliers to mines and assess biodiversity and nature impact at source.</p></div>
-            <div class="tile-detail tile-detail-outcome"><span>Outcome</span><p>Improved transparency into biodiversity risks; enabled responsible sourcing compliance with sustainability reporting requirements.</p></div>
+          <span class="tile-badge">Biodiversity Risk Transparency</span>
+          <div class="tile-title">Upstream Mining &amp; Biodiversity Impact Mapping</div>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Challenge</div>
+            <div class="tile-detail-text">Limited visibility into upstream mining operations and biodiversity impact of suppliers across the value chain.</div>
           </div>
-          <div class="project-tags"><span>Sustainability</span><span>ESG</span><span>Energy</span></div>
-        </div>
-
-        <div class="project-card fade-in">
-          <div class="project-value">$25M+ TCV</div>
-          <h3>Lean Digital End-to-End Warranty Transformation</h3>
-          <p>Designed and delivered a comprehensive digital warranty transformation solution integrating analytics, automation, and AI to drive significant cost savings and operational efficiency for global manufacturing clients.</p>
-          <div class="project-tags">
-            <span>Warranty Analytics</span><span>Digital Transformation</span><span>Manufacturing</span>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Approach</div>
+            <div class="tile-detail-text">Enhanced N-tier mapping (T1–T3) to trace suppliers to mines and assess biodiversity and nature impact at source.</div>
           </div>
-        </div>
-
-        <div class="project-card fade-in">
-          <div class="project-value">$20M+ TCV</div>
-          <h3>Smart Visi Coolers Track &amp; Trace</h3>
-          <p>Built an IoT-powered track and trace system with analytical insights for smart visi coolers, enabling real-time monitoring, operational visibility, and data-driven sales growth strategies.</p>
-          <div class="project-tags">
-            <span>IoT Analytics</span><span>Track &amp; Trace</span><span>Sales Analytics</span>
+          <div class="tile-detail-row">
+            <div class="tile-detail-label">Outcome</div>
+            <div class="tile-detail-text tile-outcome">Improved transparency into biodiversity risks; enabled responsible sourcing compliance with sustainability reporting requirements.</div>
+          </div>
+          <div class="tile-tags">
+            <span class="tile-tag">Sustainability</span>
+            <span class="tile-tag">ESG</span>
+            <span class="tile-tag">Energy</span>
           </div>
         </div>
 
-        <div class="project-card fade-in">
-          <div class="project-value">$16M+ TCV</div>
-          <h3>Commodity 360 — Palm Oil Price Prediction</h3>
-          <p>Developed a commodity price prediction model for a Middle East client using external data from CEIC and other sources, enabling strategic procurement decisions and significant cost optimization.</p>
-          <div class="project-tags">
-            <span>AI/ML</span><span>External Data</span><span>Supply Chain</span>
+      </div><!-- end engage-grid -->
+    </div><!-- end sub-section 1 -->
+
+    <!-- Sub-section 2 -->
+    <div class="sub-section">
+      <h3 class="sub-heading fade-up">Featured Solutions</h3>
+      <div class="feat-grid">
+
+        <div class="feat-card fade-up">
+          <div class="feat-tcv">$25M+ TCV</div>
+          <div class="feat-title">Lean Digital End-to-End Warranty Transformation</div>
+          <div class="feat-desc">Designed and delivered a comprehensive digital warranty transformation solution integrating analytics, automation, and AI to drive significant cost savings and operational efficiency for global manufacturing clients.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">Warranty Analytics</span>
+            <span class="feat-tag">Digital Transformation</span>
+            <span class="feat-tag">Manufacturing</span>
           </div>
         </div>
 
-        <div class="project-card fade-in">
-          <div class="project-value">$5M+ TCV</div>
-          <h3>N-tier Supply Chain Risk Intelligence Product</h3>
-          <p>Built a product for N-tier supply chain network identification with risk scoring across Operational, Financial, ESG, Geopolitical and Cyber dimensions for Auto, Consumer Electronics, Healthcare, Pharma, Retail &amp; CPG clients globally.</p>
-          <div class="project-tags">
-            <span>Supply Chain</span><span>Risk Analytics</span><span>ESG</span><span>GenAI</span>
+        <div class="feat-card fade-up delay-1">
+          <div class="feat-tcv">$20M+ TCV</div>
+          <div class="feat-title">Smart Visi Coolers Track &amp; Trace</div>
+          <div class="feat-desc">Built an IoT-powered track and trace system with analytical insights for smart visi coolers, enabling real-time monitoring, operational visibility, and data-driven sales growth strategies.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">IoT Analytics</span>
+            <span class="feat-tag">Track &amp; Trace</span>
+            <span class="feat-tag">Sales Analytics</span>
           </div>
         </div>
 
-        <div class="project-card fade-in">
-          <div class="project-value">$1M+ TCV</div>
-          <h3>Predictive Maintenance — Oil Refinery</h3>
-          <p>Delivered IoT analytics solution for predictive maintenance of critical assets and operations management of an oil refinery, leveraging live streaming data to minimize downtime and optimize maintenance cycles.</p>
-          <div class="project-tags">
-            <span>IoT</span><span>Predictive Maintenance</span><span>Oil &amp; Gas</span>
+        <div class="feat-card fade-up delay-2">
+          <div class="feat-tcv">$16M+ TCV</div>
+          <div class="feat-title">Commodity 360 — Palm Oil Price Prediction</div>
+          <div class="feat-desc">Developed a commodity price prediction model for a Middle East client using external data from CEIC and other sources, enabling strategic procurement decisions and significant cost optimization.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">AI/ML</span>
+            <span class="feat-tag">External Data</span>
+            <span class="feat-tag">Supply Chain</span>
           </div>
         </div>
 
-        <div class="project-card fade-in">
-          <div class="project-value">$7.5M Savings</div>
-          <h3>Dealer Behaviour Analytics</h3>
-          <p>Developed a dealer behaviour analytics model that identified outlier PINs and provided actionable recommendations. Bringing outlier dealers to non-outlier behaviour patterns delivered ~$7.5M in documented savings.</p>
-          <div class="project-tags">
-            <span>Behavioural Analytics</span><span>Automotive</span><span>Cost Savings</span>
+        <div class="feat-card fade-up delay-3">
+          <div class="feat-tcv">$5M+ TCV</div>
+          <div class="feat-title">N-tier Supply Chain Risk Intelligence Product</div>
+          <div class="feat-desc">Built a product for N-tier supply chain network identification with risk scoring across Operational, Financial, ESG, Geopolitical and Cyber dimensions for Auto, Consumer Electronics, Healthcare, Pharma, Retail &amp; CPG clients globally.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">Supply Chain</span>
+            <span class="feat-tag">Risk Analytics</span>
+            <span class="feat-tag">ESG</span>
+            <span class="feat-tag">GenAI</span>
           </div>
         </div>
 
-        <div class="project-card fade-in">
-          <div class="project-value">5M+ Euro P&amp;L</div>
-          <h3>Labor Cost Optimisation &amp; Service Centre Analytics</h3>
-          <p>Two parallel analytics programs — labor cost optimization for a major high-tech client and authorized service centre performance improvement — each delivering over €5M P&amp;L impact through targeted analytics interventions.</p>
-          <div class="project-tags">
-            <span>Labor Analytics</span><span>Service Excellence</span><span>High-Tech</span>
+        <div class="feat-card fade-up delay-4">
+          <div class="feat-tcv">$1M+ TCV</div>
+          <div class="feat-title">Predictive Maintenance — Oil Refinery</div>
+          <div class="feat-desc">Delivered IoT analytics solution for predictive maintenance of critical assets and operations management of an oil refinery, leveraging live streaming data to minimize downtime and optimize maintenance cycles.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">IoT</span>
+            <span class="feat-tag">Predictive Maintenance</span>
+            <span class="feat-tag">Oil &amp; Gas</span>
           </div>
         </div>
 
-        <div class="project-card fade-in">
-          <div class="project-value">$1M TCV</div>
-          <h3>Energy Forecasting — Smart Meters</h3>
-          <p>Developed near real-time energy forecasting solution using smart meter data for DISCOMs, enabling accurate demand prediction and improved grid management.</p>
-          <div class="project-tags">
-            <span>Energy Analytics</span><span>Smart Meters</span><span>Forecasting</span>
+        <div class="feat-card fade-up delay-5">
+          <div class="feat-tcv">$7.5M Savings</div>
+          <div class="feat-title">Dealer Behaviour Analytics</div>
+          <div class="feat-desc">Developed a dealer behaviour analytics model that identified outlier PINs and provided actionable recommendations. Bringing outlier dealers to non-outlier behaviour patterns delivered ~$7.5M in documented savings.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">Behavioural Analytics</span>
+            <span class="feat-tag">Automotive</span>
+            <span class="feat-tag">Cost Savings</span>
           </div>
         </div>
 
-      </div>
-
-      <!-- Past Transformation Projects -->
-      <div class="past-projects fade-in">
-        <h3 class="past-projects-heading">Analytical &amp; Digital Transformation Projects</h3>
-        <div class="past-projects-grid">
-
-          <div class="past-card">
-            <span class="past-card-value">$5.0M Savings</span>
-            <h4>Corrective Action Support Model</h4>
-            <ul>
-              <li>Problem Resolution Cycle Time reduction and Dollar Value Realization using Reliability, Failure Relationship analytics in various stages of 8D</li>
-              <li>Includes Emerging Issues (EI) and Solution Effectiveness (SE) tracking</li>
-            </ul>
+        <div class="feat-card fade-up">
+          <div class="feat-tcv">5M+ Euro P&amp;L</div>
+          <div class="feat-title">Labor Cost Optimisation &amp; Service Centre Analytics</div>
+          <div class="feat-desc">Two parallel analytics programs — labor cost optimization for a major high-tech client and authorized service centre performance improvement — each delivering over €5M P&amp;L impact through targeted analytics interventions.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">Labor Analytics</span>
+            <span class="feat-tag">Service Excellence</span>
+            <span class="feat-tag">High-Tech</span>
           </div>
-
-          <div class="past-card">
-            <span class="past-card-value">~$4M Savings</span>
-            <h4>Glide Path Project Identification</h4>
-            <ul>
-              <li>Developed project identification framework for warranty dollar reduction</li>
-              <li>Analysis of data to develop hypothesis for issue prioritization</li>
-            </ul>
-          </div>
-
-          <div class="past-card">
-            <span class="past-card-value">~$7.5M Savings</span>
-            <h4>Dealer Behaviour Analytics</h4>
-            <ul>
-              <li>Statistical claim analysis to understand field behaviour and drive Distinctive Uptime for Customers</li>
-              <li>Benchmarked overall dealer network performance and identified best-in-class practices</li>
-              <li>Developed strategies to drive outlier dealers toward best-in-class behaviour</li>
-            </ul>
-          </div>
-
-          <div class="past-card">
-            <span class="past-card-value">39 Days Saved</span>
-            <h4>DTAC Emerging Issue Model</h4>
-            <ul>
-              <li>Addressed delayed identification of emerging issues in standard SAS outputs</li>
-              <li>Developed algorithm for generating issues from text and built SAS Dictionary</li>
-              <li>Implemented rank logic for prioritization of emerging issues</li>
-            </ul>
-          </div>
-
-          <div class="past-card">
-            <span class="past-card-value">$1.0M Savings</span>
-            <h4>Labor Averaging Model</h4>
-            <ul>
-              <li>Analysed As-Is process and created a statistically driven To-Be process for labor averaging</li>
-              <li>Developed method to calculate "Best-in-Claims" — a fairer approach for dealer compensation</li>
-            </ul>
-          </div>
-
-          <div class="past-card">
-            <span class="past-card-value">$1.0M Savings</span>
-            <h4>Propensity Model</h4>
-            <ul>
-              <li>Identified common issues across manufacturing units using affinity analysis</li>
-              <li>Built ranking logic for issue prioritization and identified variables driving commonality across factories</li>
-            </ul>
-          </div>
-
-          <div class="past-card">
-            <span class="past-card-value">~$0.5M Savings</span>
-            <h4>Emerging NC's &amp; CAR Prioritization</h4>
-            <ul>
-              <li>Identified emerging non-conformances where FPM is increasing vs. prior period</li>
-              <li>Automated CAR creation for emerging NC parts; tracked Minor, Incidental, Major &amp; Critical CARs</li>
-              <li>Created SAS database as a parallel system to the Emerging Issue list</li>
-            </ul>
-          </div>
-
-          <div class="past-card">
-            <span class="past-card-value">CX Analytics</span>
-            <h4>Customer Satisfaction / Dissatisfaction Estimation</h4>
-            <ul>
-              <li>Identified parameters contributing to customer satisfaction and dissatisfaction using regression techniques</li>
-            </ul>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">Automation</span>
-            <h4>Automate Global SIR Reporting</h4>
-            <p>Through SAS (SWA) for Whirlpool Corporation</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">CX Transformation</span>
-            <h4>India Consumer Services BPR</h4>
-            <p>Business Process Re-engineering w.r.t. Customer Experience</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">Legal Analytics</span>
-            <h4>Sampford Australia Legal Case</h4>
-            <p>Analytics-driven support for legal proceedings and insights delivery</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">&gt;$1M Savings</span>
-            <h4>Service Process Change Management</h4>
-            <p>Australia, China, Hong Kong &amp; India</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">Global Standard</span>
-            <h4>Global Total Cost of Quality &amp; MCR</h4>
-            <p>Alignment and standardisation of MCR — Asia</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">Cost Reduction</span>
-            <h4>Reduction of India MCR</h4>
-            <p>Driving Serviceability Project across India operations</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">Recovery</span>
-            <h4>Warranty Charge Back — GTPP Asia</h4>
-            <p>Charge back of excess amounts spent on warranty claims beyond BET target</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">~$1M Savings</span>
-            <h4>TCQ Accruals / Provision Model</h4>
-            <p>Hong Kong — Jun 2009 to Dec 2009</p>
-          </div>
-
-          <div class="past-card past-card-compact">
-            <span class="past-card-value">Transition</span>
-            <h4>Warranty Cost Operations Transition</h4>
-            <p>UK/Ireland operations transitioned to Gurgaon from Bangalore, India</p>
-          </div>
-
         </div>
-      </div>
 
+        <div class="feat-card fade-up delay-1">
+          <div class="feat-tcv">$1M TCV</div>
+          <div class="feat-title">Energy Forecasting — Smart Meters</div>
+          <div class="feat-desc">Developed near real-time energy forecasting solution using smart meter data for DISCOMs, enabling accurate demand prediction and improved grid management.</div>
+          <div class="feat-tags">
+            <span class="feat-tag">Energy Analytics</span>
+            <span class="feat-tag">Smart Meters</span>
+            <span class="feat-tag">Forecasting</span>
+          </div>
+        </div>
+
+      </div><!-- end feat-grid -->
+    </div><!-- end sub-section 2 -->
+
+    <!-- Sub-section 3 -->
+    <div class="sub-section">
+      <h3 class="sub-heading fade-up">Analytical &amp; Digital Transformation Projects</h3>
+
+      <div class="proj-grid" style="margin-bottom:36px;">
+
+        <div class="proj-card fade-up">
+          <div class="proj-value">$5.0M Savings</div>
+          <div class="proj-title">Corrective Action Support Model</div>
+          <ul class="proj-bullets">
+            <li>Problem Resolution Cycle Time reduction and Dollar Value Realization using Reliability, Failure Relationship analytics in various stages of 8D</li>
+            <li>Includes Emerging Issues (EI) and Solution Effectiveness (SE) tracking</li>
+          </ul>
+        </div>
+
+        <div class="proj-card fade-up delay-1">
+          <div class="proj-value">~$4M Savings</div>
+          <div class="proj-title">Glide Path Project Identification</div>
+          <ul class="proj-bullets">
+            <li>Developed project identification framework for warranty dollar reduction</li>
+            <li>Analysis of data to develop hypothesis for issue prioritization</li>
+          </ul>
+        </div>
+
+        <div class="proj-card fade-up delay-2">
+          <div class="proj-value">~$7.5M Savings</div>
+          <div class="proj-title">Dealer Behaviour Analytics</div>
+          <ul class="proj-bullets">
+            <li>Statistical claim analysis to understand field behaviour and drive Distinctive Uptime for Customers</li>
+            <li>Benchmarked overall dealer network performance and identified best-in-class practices</li>
+            <li>Developed strategies to drive outlier dealers toward best-in-class behaviour</li>
+          </ul>
+        </div>
+
+        <div class="proj-card fade-up delay-3">
+          <div class="proj-value">39 Days Saved</div>
+          <div class="proj-title">DTAC Emerging Issue Model</div>
+          <ul class="proj-bullets">
+            <li>Addressed delayed identification of emerging issues in standard SAS outputs</li>
+            <li>Developed algorithm for generating issues from text and built SAS Dictionary</li>
+            <li>Implemented rank logic for prioritization of emerging issues</li>
+          </ul>
+        </div>
+
+        <div class="proj-card fade-up">
+          <div class="proj-value">$1.0M Savings</div>
+          <div class="proj-title">Labor Averaging Model</div>
+          <ul class="proj-bullets">
+            <li>Analysed As-Is process and created a statistically driven To-Be process for labor averaging</li>
+            <li>Developed method to calculate "Best-in-Claims" — a fairer approach for dealer compensation</li>
+          </ul>
+        </div>
+
+        <div class="proj-card fade-up delay-1">
+          <div class="proj-value">$1.0M Savings</div>
+          <div class="proj-title">Propensity Model</div>
+          <ul class="proj-bullets">
+            <li>Identified common issues across manufacturing units using affinity analysis</li>
+            <li>Built ranking logic for issue prioritization and identified variables driving commonality across factories</li>
+          </ul>
+        </div>
+
+        <div class="proj-card fade-up delay-2">
+          <div class="proj-value">~$0.5M Savings</div>
+          <div class="proj-title">Emerging NC's &amp; CAR Prioritization</div>
+          <ul class="proj-bullets">
+            <li>Identified emerging non-conformances where FPM is increasing vs. prior period</li>
+            <li>Automated CAR creation for emerging NC parts; tracked Minor, Incidental, Major &amp; Critical CARs</li>
+            <li>Created SAS database as a parallel system to the Emerging Issue list</li>
+          </ul>
+        </div>
+
+        <div class="proj-card fade-up delay-3">
+          <div class="proj-value">CX Analytics</div>
+          <div class="proj-title">Customer Satisfaction / Dissatisfaction Estimation</div>
+          <ul class="proj-bullets">
+            <li>Identified parameters contributing to customer satisfaction and dissatisfaction using regression techniques</li>
+          </ul>
+        </div>
+
+      </div><!-- end proj-grid -->
+
+      <!-- Compact cards -->
+      <div class="compact-grid">
+
+        <div class="compact-card fade-up">
+          <div class="compact-value">Automation</div>
+          <div class="compact-title">Automate Global SIR Reporting</div>
+          <div class="compact-desc">Through SAS (SWA) for Whirlpool Corporation</div>
+        </div>
+
+        <div class="compact-card fade-up delay-1">
+          <div class="compact-value">CX Transformation</div>
+          <div class="compact-title">India Consumer Services BPR</div>
+          <div class="compact-desc">Business Process Re-engineering w.r.t. Customer Experience</div>
+        </div>
+
+        <div class="compact-card fade-up delay-2">
+          <div class="compact-value">Legal Analytics</div>
+          <div class="compact-title">Sampford Australia Legal Case</div>
+          <div class="compact-desc">Analytics-driven support for legal proceedings and insights delivery</div>
+        </div>
+
+        <div class="compact-card fade-up delay-3">
+          <div class="compact-value">&gt;$1M Savings</div>
+          <div class="compact-title">Service Process Change Management</div>
+          <div class="compact-desc">Australia, China, Hong Kong &amp; India</div>
+        </div>
+
+        <div class="compact-card fade-up delay-4">
+          <div class="compact-value">Global Standard</div>
+          <div class="compact-title">Global Total Cost of Quality &amp; MCR</div>
+          <div class="compact-desc">Alignment and standardisation of MCR — Asia</div>
+        </div>
+
+        <div class="compact-card fade-up delay-5">
+          <div class="compact-value">Cost Reduction</div>
+          <div class="compact-title">Reduction of India MCR</div>
+          <div class="compact-desc">Driving Serviceability Project across India operations</div>
+        </div>
+
+        <div class="compact-card fade-up">
+          <div class="compact-value">Recovery</div>
+          <div class="compact-title">Warranty Charge Back — GTPP Asia</div>
+          <div class="compact-desc">Charge back of excess amounts spent on warranty claims beyond BET target</div>
+        </div>
+
+        <div class="compact-card fade-up delay-1">
+          <div class="compact-value">~$1M Savings</div>
+          <div class="compact-title">TCQ Accruals / Provision Model — Hong Kong</div>
+          <div class="compact-desc">Jun 2009 to Dec 2009</div>
+        </div>
+
+        <div class="compact-card fade-up delay-2">
+          <div class="compact-value">Transition</div>
+          <div class="compact-title">Warranty Cost Operations Transition</div>
+          <div class="compact-desc">UK/Ireland operations transitioned to Gurgaon from Bangalore, India</div>
+        </div>
+
+      </div><!-- end compact-grid -->
+    </div><!-- end sub-section 3 -->
+
+  </div>
+</section>
+
+<!-- ============================================================
+     EDUCATION SECTION
+     ============================================================ -->
+<section id="education" class="section-padded">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">05 — Qualifications</span>
+      <h2 class="section-title">Education &amp; Certifications</h2>
     </div>
-  </section>
 
-  <!-- ========== EDUCATION ========== -->
-  <section id="education">
-    <div class="container">
-      <div class="section-header fade-in" data-chapter="05">
-        <span class="section-label">Qualifications</span>
-        <h2>Education &amp; Certifications</h2>
-      </div>
-      <div class="edu-grid">
-
-        <div class="edu-section fade-in">
-          <h3 class="edu-heading">Academic Credentials</h3>
-          <div class="edu-list">
-            <div class="edu-item">
-              <div class="edu-icon">&#127891;</div>
-              <div>
-                <h4>Professional Certificate — Chief Digital &amp; AI Officer (CDAIO)</h4>
-                <span class="edu-org">Indian School of Business (ISB)</span>
-              </div>
+    <div class="edu-grid">
+      <div class="fade-up">
+        <div class="edu-col-title">Academic Credentials</div>
+        <div class="edu-items">
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-text">
+              <div class="edu-degree">Professional Certificate — Chief Digital &amp; AI Officer (CDAIO)</div>
+              <div class="edu-school">Indian School of Business (ISB)</div>
             </div>
-            <div class="edu-item">
-              <div class="edu-icon">&#127891;</div>
-              <div>
-                <h4>Professional Certificate — AI &amp; ML for Business Excellence</h4>
-                <span class="edu-org">IIM Kozhikode</span>
-              </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-text">
+              <div class="edu-degree">Professional Certificate — AI &amp; ML for Business Excellence</div>
+              <div class="edu-school">IIM Kozhikode</div>
             </div>
-            <div class="edu-item">
-              <div class="edu-icon">&#127891;</div>
-              <div>
-                <h4>PGDGM — Leadership, Innovation &amp; Strategy</h4>
-                <span class="edu-org">EMERITUS Institute of Management &nbsp;|&nbsp; In collaboration with MIT, Columbia &amp; Tuck Business Schools</span>
-              </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-text">
+              <div class="edu-degree">PGDGM — Leadership, Innovation &amp; Strategy</div>
+              <div class="edu-school">EMERITUS Institute of Management | In collaboration with MIT, Columbia &amp; Tuck Business Schools</div>
             </div>
-            <div class="edu-item">
-              <div class="edu-icon">&#127891;</div>
-              <div>
-                <h4>B.E. — Mechanical Engineering</h4>
-                <span class="edu-org">Dr. AIT, affiliated to VTU</span>
-              </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-text">
+              <div class="edu-degree">B.E. — Mechanical Engineering</div>
+              <div class="edu-school">Dr. AIT, affiliated to VTU</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="edu-section fade-in">
-          <h3 class="edu-heading">Professional Certifications</h3>
-          <div class="edu-list">
-            <div class="edu-item">
-              <div class="edu-icon">&#10003;</div>
-              <div>
-                <h4>Six Sigma Black Belt (OpEx)</h4>
-                <span class="edu-org">Whirlpool Corporation</span>
-              </div>
+      <div class="fade-up delay-2">
+        <div class="edu-col-title">Professional Certifications</div>
+        <div class="edu-items">
+          <div class="edu-item">
+            <div class="edu-icon">🏅</div>
+            <div class="edu-text">
+              <div class="edu-degree">Six Sigma Black Belt (OpEx)</div>
+              <div class="edu-school">Whirlpool Corporation</div>
             </div>
-            <div class="edu-item">
-              <div class="edu-icon">&#10003;</div>
-              <div>
-                <h4>Project Management Professional (PMP)</h4>
-                <span class="edu-org">Project Management Institute</span>
-              </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">🏅</div>
+            <div class="edu-text">
+              <div class="edu-degree">Project Management Professional (PMP)</div>
+              <div class="edu-school">Project Management Institute</div>
             </div>
-            <div class="edu-item">
-              <div class="edu-icon">&#10003;</div>
-              <div>
-                <h4>Emerging Leaders Development Program</h4>
-                <span class="edu-org">For People Managers</span>
-              </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">🏅</div>
+            <div class="edu-text">
+              <div class="edu-degree">Emerging Leaders Development Program</div>
+              <div class="edu-school">For People Managers</div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== CONTACT ========== -->
-  <section id="contact" class="section-alt">
-    <div class="container">
-      <div class="section-header fade-in" data-chapter="06">
-        <span class="section-label">Connect</span>
-        <h2>Get In Touch</h2>
-      </div>
-      <div class="contact-wrapper fade-in">
-        <p class="contact-intro">Whether you are looking for a strategic partner for digital transformation, a thought leader in supply chain analytics, or simply want to connect — I would love to hear from you.</p>
-        <div class="contact-open-to fade-in">
-          <span class="contact-open-label">Open to Opportunities</span>
-          <p>Available for <strong>CXO, VP &amp; Partner-level</strong> leadership roles across Digital, Data &amp; AI, Manufacturing, and Supply Chain Transformation — <strong>India &nbsp;·&nbsp; Middle East (UAE/GCC) &nbsp;·&nbsp; Singapore/APAC</strong></p>
-        </div>
-        <div class="contact-cards">
-          <a href="mailto:nabuath@gmail.com" class="contact-card">
-            <div class="contact-card-icon">&#9993;</div>
-            <span class="contact-card-label">Email</span>
-            <span class="contact-card-value">nabuath@gmail.com</span>
-          </a>
-          <a href="https://www.linkedin.com/in/nabuath" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-card-icon">in</div>
-            <span class="contact-card-label">LinkedIn</span>
-            <span class="contact-card-value">linkedin.com/in/nabuath</span>
-          </a>
-          <a href="tel:+919987527630" class="contact-card">
-            <div class="contact-card-icon">&#9742;</div>
-            <span class="contact-card-label">Phone</span>
-            <span class="contact-card-value">+91 9987527630</span>
-          </a>
+<!-- ============================================================
+     CONTACT SECTION
+     ============================================================ -->
+<section id="contact" class="section-padded">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">06 — Connect</span>
+      <h2 class="section-title">Get In Touch</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="fade-up">
+        <p class="contact-intro">
+          Whether you are looking for a strategic partner for digital transformation, a thought leader in supply chain analytics, or simply want to connect — I would love to hear from you.
+        </p>
+        <div class="open-to-work">
+          <div class="otw-label">
+            <span class="pulse-dot"></span>
+            Open to Opportunities
+          </div>
+          <p class="otw-text">Available for CXO, VP &amp; Partner-level leadership roles across Digital, Data &amp; AI, Manufacturing, and Supply Chain Transformation — India · Middle East (UAE/GCC) · Singapore/APAC</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer>
-    <div class="container footer-inner">
-      <span class="footer-logo">N<span>K</span></span>
-      <p>&copy; 2026 Nabuath Ulla Khan. All rights reserved.</p>
-      <p class="footer-tagline">Chief Digital &amp; Analytics Officer &nbsp;|&nbsp; nabuath.com</p>
+      <div class="contact-cards fade-up delay-2">
+        <a href="mailto:nabuath@gmail.com" class="contact-card">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-card-label">Email</div>
+            <div class="contact-card-value">nabuath@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/nabuath" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">in</div>
+          <div>
+            <div class="contact-card-label">LinkedIn</div>
+            <div class="contact-card-value">linkedin.com/in/nabuath</div>
+          </div>
+        </a>
+        <a href="tel:+919987527630" class="contact-card">
+          <div class="contact-icon">☎</div>
+          <div>
+            <div class="contact-card-label">Phone</div>
+            <div class="contact-card-value">+91 9987527630</div>
+          </div>
+        </a>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="js/main.js"></script>
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Nabuath Ulla Khan · Chief Digital &amp; Analytics Officer</span>
+    <div class="footer-logo">Nabuath<span>.</span></div>
+    <span class="footer-domain">nabuath.com</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+// ---- Scroll Progress Bar ----
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('scroll-progress').style.width = pct + '%';
+});
+
+// ---- Nav scroll effect ----
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// ---- Back to Top ----
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 500) {
+    btt.classList.add('visible');
+  } else {
+    btt.classList.remove('visible');
+  }
+});
+
+// ---- Hamburger / Mobile Nav ----
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+
+mobileNav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  });
+});
+
+// ---- Typewriter ----
+const phrases = [
+  "unlock Supply Chain Resilience",
+  "harness the power of AI & GenAI",
+  "turn data into competitive advantage",
+  "lead Digital Transformation at scale",
+  "build future-ready intelligent enterprises",
+  "navigate complexity with data-driven clarity"
+];
+let phraseIdx = 0, charIdx = 0, deleting = false;
+const twEl = document.getElementById('tw-text');
+
+function typewriter() {
+  const current = phrases[phraseIdx];
+  if (!deleting) {
+    twEl.textContent = current.substring(0, charIdx + 1);
+    charIdx++;
+    if (charIdx === current.length) {
+      setTimeout(() => { deleting = true; }, 2000);
+      setTimeout(typewriter, 2100);
+      return;
+    }
+  } else {
+    twEl.textContent = current.substring(0, charIdx - 1);
+    charIdx--;
+    if (charIdx === 0) {
+      deleting = false;
+      phraseIdx = (phraseIdx + 1) % phrases.length;
+    }
+  }
+  setTimeout(typewriter, deleting ? 42 : 62);
+}
+typewriter();
+
+// ---- IntersectionObserver: fade-up ----
+const fadeEls = document.querySelectorAll('.fade-up');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+fadeEls.forEach(el => fadeObserver.observe(el));
+
+// ---- Section title underline animation ----
+const titleEls = document.querySelectorAll('.section-title');
+const titleObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animated');
+      titleObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+titleEls.forEach(el => titleObserver.observe(el));
+
+// ---- Stat Counters ----
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const step = Math.ceil(duration / target);
+  let current = 0;
+  const timer = setInterval(() => {
+    current++;
+    el.textContent = prefix + current + suffix;
+    if (current >= target) {
+      el.textContent = prefix + target + suffix;
+      clearInterval(timer);
+    }
+  }, step);
+}
+
+const statEls = document.querySelectorAll('.stat-value[data-target]');
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      statObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+statEls.forEach(el => statObserver.observe(el));
+
+// ---- Timeline expand/collapse ----
+function toggleExp(header) {
+  const details = header.nextElementSibling;
+  if (!details || !details.classList.contains('tl-details')) return;
+  const btn = header.querySelector('.tl-toggle-btn');
+  if (!btn) return;
+  const isOpen = details.classList.contains('open');
+  if (isOpen) {
+    details.classList.remove('open');
+    btn.textContent = 'View Details ▾';
+  } else {
+    details.classList.add('open');
+    btn.textContent = 'Hide Details ▲';
+  }
+}
+
+// ---- Active nav link (scroll spy) ----
+const sections = document.querySelectorAll('section[id], div[id="stats-row"]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+function updateActiveNav() {
+  const scrollY = window.scrollY + 120;
+  let current = '';
+  sections.forEach(sec => {
+    if (sec.offsetTop <= scrollY) {
+      current = sec.id;
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+</script>
+
 </body>
 </html>
