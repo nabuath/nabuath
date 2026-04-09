@@ -491,6 +491,51 @@ section { padding: 100px 0; }
   margin: 0;
 }
 
+/* ---------- INDUSTRY STRIP ---------- */
+.industry-strip {
+  margin-top: 48px;
+  padding: 24px 32px;
+  background: var(--navy);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.industry-strip-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.industry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.industry-tags span {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 5px 14px;
+  border-radius: 100px;
+  transition: var(--transition);
+}
+
+.industry-tags span:hover {
+  background: rgba(200,169,110,0.2);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
 /* ============================================================
    EXPERIENCE / TIMELINE
    ============================================================ */
@@ -740,6 +785,113 @@ section { padding: 100px 0; }
   background: var(--grey-bg);
   padding: 3px 10px;
   border-radius: 100px;
+}
+
+/* ============================================================
+   RECENT CLIENT ENGAGEMENTS
+   ============================================================ */
+.engagements-wrap {
+  margin-bottom: 64px;
+}
+
+.engagements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.engagement-card {
+  background: var(--white);
+  border: 1px solid var(--grey-mid);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.engagement-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold);
+}
+
+.engagement-industry {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.engagement-outcome {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(200,169,110,0.1);
+  border: 1px solid rgba(200,169,110,0.3);
+  padding: 3px 12px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+
+.engagement-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  line-height: 1.4;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--grey-mid);
+}
+
+.engagement-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.engagement-block-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.engagement-block p {
+  font-size: 12.5px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.engagement-block-benefit {
+  background: rgba(27,42,74,0.03);
+  border-radius: 6px;
+  padding: 10px 12px;
+  border-left: 2px solid var(--gold);
+}
+
+.engagement-block-benefit .engagement-block-label {
+  color: var(--gold);
+}
+
+.engagement-block-benefit p {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.featured-solutions-heading {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .engagements-grid { grid-template-columns: 1fr; }
+  .engagement-row { grid-template-columns: 1fr; gap: 12px; }
 }
 
 /* ============================================================
