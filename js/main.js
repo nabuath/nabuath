@@ -88,14 +88,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* ---------- COUNTER ANIMATION (hero stats) ---------- */
-const animateCounter = (el, target, suffix = '') => {
+const animateCounter = (el, target, prefix = '', suffix = '') => {
   const duration = 1800;
   const start = performance.now();
   const update = (now) => {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
     const value = Math.round(eased * target);
-    el.textContent = value + suffix;
+    el.textContent = prefix + value + suffix;
     if (progress < 1) requestAnimationFrame(update);
   };
   requestAnimationFrame(update);
@@ -106,12 +106,13 @@ const statsObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       const statNums = entry.target.querySelectorAll('.stat-num');
       statNums.forEach(num => {
+        const prefix = num.dataset.prefix || '';
         const text = num.textContent;
-        const match = text.match(/(\d+)(\+?[A-Z$%M]*)/);
+        const match = text.match(/(\d+)([A-Z+M%]*)/);
         if (match) {
           const target = parseInt(match[1]);
           const suffix = match[2] || '';
-          animateCounter(num, target, suffix);
+          animateCounter(num, target, prefix, suffix);
         }
       });
       statsObserver.unobserve(entry.target);
