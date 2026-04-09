@@ -1506,3 +1506,189 @@ footer p {
   .hero-actions { flex-direction: column; }
   .btn { width: 100%; justify-content: center; }
 }
+
+/* ============================================================
+   MAGAZINE / EDITORIAL STYLE LAYER
+   ============================================================ */
+
+/* ---------- HERO MASTHEAD ---------- */
+.hero-masthead {
+  position: absolute;
+  top: 74px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 32px;
+  pointer-events: none;
+}
+
+.masthead-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200,169,110,0.45));
+  max-width: 280px;
+}
+
+.masthead-rule:last-child {
+  background: linear-gradient(to left, transparent, rgba(200,169,110,0.45));
+}
+
+.masthead-text {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(200,169,110,0.7);
+  white-space: nowrap;
+}
+
+/* ---------- SECTION CHAPTER NUMBERS ---------- */
+.section-header {
+  position: relative;
+  padding-top: 20px;
+}
+
+.section-header[data-chapter]::before {
+  content: attr(data-chapter);
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-serif);
+  font-size: clamp(80px, 12vw, 130px);
+  font-weight: 900;
+  color: rgba(27,42,74,0.045);
+  line-height: 1;
+  letter-spacing: -4px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.section-alt .section-header[data-chapter]::before {
+  color: rgba(27,42,74,0.055);
+}
+
+.section-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- EDITORIAL SECTION LABEL ---------- */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::before,
+.section-label::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+/* ---------- EDITORIAL H2 RULE ---------- */
+.section-header h2 {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* ---------- PULL QUOTE ---------- */
+.pull-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.6;
+  border-left: 3px solid var(--gold);
+  padding: 14px 24px;
+  margin: 28px 0 0 0;
+  background: rgba(200,169,110,0.05);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.pull-quote::before {
+  content: '\201C';
+  font-size: 2em;
+  color: var(--gold);
+  line-height: 0;
+  vertical-align: -0.4em;
+  margin-right: 4px;
+  font-style: normal;
+}
+
+/* ---------- DROP CAP ---------- */
+.drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 4.2em;
+  font-weight: 700;
+  color: var(--navy);
+  float: left;
+  line-height: 0.78;
+  margin: 6px 10px 0 0;
+  padding: 0;
+}
+
+/* ---------- EDITORIAL SECTION DIVIDER ---------- */
+section::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--grey-line) 20%, var(--grey-line) 80%, transparent);
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+#hero::before { display: none; }
+
+/* ---------- MAGAZINE TYPOGRAPHY REFINEMENTS ---------- */
+.hero-name {
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.past-projects-heading,
+.featured-solutions-heading h3 {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.section-header h2 {
+  font-size: clamp(30px, 4.5vw, 46px);
+  letter-spacing: -0.5px;
+}
+
+/* ---------- RESPONSIVE MAGAZINE ADJUSTMENTS ---------- */
+@media (max-width: 768px) {
+  .hero-masthead { top: 68px; gap: 12px; }
+  .masthead-text { font-size: 9px; letter-spacing: 2px; }
+  .masthead-rule { max-width: 80px; }
+  .section-header[data-chapter]::before { top: -20px; }
+  .drop-cap::first-letter { font-size: 3.2em; }
+}
+
+@media (max-width: 480px) {
+  .section-label::before,
+  .section-label::after { width: 16px; }
+}
