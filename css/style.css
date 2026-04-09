@@ -4,6 +4,137 @@
    Colors: Navy #1B2A4A | Gold #C8A96E | Light Grey #F5F6F8
    ============================================================ */
 
+/* ============================================================
+   INTERACTIVE ELEMENTS
+   ============================================================ */
+
+/* Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(200,169,110,0.6);
+}
+
+/* Back to Top */
+#back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#back-to-top:hover {
+  background: var(--gold);
+  color: var(--navy-dark);
+}
+
+/* Hero Typewriter */
+.hero-typewriter {
+  font-size: 16px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 20px;
+  min-height: 26px;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+#typewriter-text {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 600;
+}
+.typewriter-cursor {
+  color: var(--gold);
+  animation: blink 0.75s step-end infinite;
+  font-weight: 300;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Expand / Collapse experience details */
+.timeline-details {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+  opacity: 0;
+}
+.timeline-details.open {
+  max-height: 1200px;
+  opacity: 1;
+}
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  background: none;
+  border: 1px solid var(--grey-line);
+  color: var(--navy);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.toggle-btn:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.toggle-btn .arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+.toggle-btn.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* 3D lift on project cards */
+.project-card {
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+.project-card:hover {
+  transform: translateY(-6px) rotateX(1deg);
+  box-shadow: 0 16px 48px rgba(27,42,74,0.16);
+}
+
+/* Section intro invite text */
+.section-invite {
+  text-align: center;
+  font-size: 15px;
+  color: var(--text-light);
+  margin-top: -40px;
+  margin-bottom: 48px;
+  font-style: italic;
+}
+
 /* ---------- RESET & BASE ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
